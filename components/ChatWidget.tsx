@@ -69,17 +69,19 @@ export function ChatWidget() {
   };
 
   return (
-    <div className="bg-white border rounded-xl flex flex-col h-[500px]">
-      <div className="p-4 border-b font-semibold">💬 FitCoach AI Chat</div>
+    <div className="bg-card text-card-foreground flex flex-col flex-1 h-full w-full overflow-hidden">
+      <div className="p-4 border-b border-border font-semibold shrink-0">
+        💬 FitCoach AI Chat
+      </div>
 
       <div className="flex-1 overflow-y-auto p-4 space-y-3">
         {isFetching && (
-          <p className="text-gray-400 text-sm text-center">
+          <p className="text-muted-foreground text-sm text-center py-4">
             Loading history...
           </p>
         )}
         {!isFetching && messages.length === 0 && (
-          <p className="text-gray-400 text-sm text-center">
+          <p className="text-muted-foreground text-sm text-center py-4">
             Ask me anything about fitness, nutrition, or recovery!
           </p>
         )}
@@ -89,10 +91,10 @@ export function ChatWidget() {
             className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"}`}
           >
             <div
-              className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm ${
+              className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm shadow-sm ${
                 msg.role === "user"
-                  ? "bg-black text-white rounded-br-none"
-                  : "bg-gray-100 text-gray-900 rounded-bl-none"
+                  ? "bg-primary text-primary-foreground rounded-br-none"
+                  : "bg-secondary text-secondary-foreground rounded-bl-none"
               }`}
             >
               {msg.content}
@@ -101,7 +103,7 @@ export function ChatWidget() {
         ))}
         {isLoading && (
           <div className="flex justify-start">
-            <div className="bg-gray-100 rounded-2xl rounded-bl-none px-4 py-2 text-sm text-gray-500">
+            <div className="bg-secondary text-secondary-foreground rounded-2xl rounded-bl-none px-4 py-2 text-sm shadow-sm text-muted-foreground">
               Typing...
             </div>
           </div>
@@ -109,20 +111,20 @@ export function ChatWidget() {
         <div ref={bottomRef} />
       </div>
 
-      <div className="p-4 border-t flex gap-2">
+      <div className="p-4 border-t border-border flex gap-2 rounded-b-xl">
         <input
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && sendMessage()}
           placeholder="Ask a fitness question..."
-          className="flex-1 border rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-black"
+          className="flex-1 border border-input bg-background rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary/50 text-foreground"
           disabled={isLoading}
         />
         <button
           onClick={sendMessage}
           disabled={isLoading || !input.trim()}
-          className="px-4 py-2 bg-black text-white rounded-lg text-sm font-medium disabled:opacity-50"
+          className="px-4 py-2 bg-primary text-primary-foreground rounded-lg text-sm font-medium shadow-sm transition-all hover:bg-primary/90 disabled:opacity-50"
         >
           Send
         </button>
