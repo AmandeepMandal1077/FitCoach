@@ -2,6 +2,10 @@
 
 Your Personal AI Fitness Coach. Log workouts, track your progress, and get personalized AI motivation and insights to achieve your fitness goals faster.
 
+## 🚀 Live Deployment
+
+[View FitCoach AI Live](https://fit-coach-gamma.vercel.app/)
+
 ## 🛠 Tech Stack
 
 - **Framework**: Next.js (App Router), React
