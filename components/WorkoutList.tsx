@@ -13,7 +13,7 @@ export function WorkoutList({ workouts, isLoading }: Props) {
     return (
       <div className="space-y-2">
         {[...Array(3)].map((_, i) => (
-          <div key={i} className="h-14 bg-gray-100 rounded-lg animate-pulse" />
+          <div key={i} className="h-14 bg-muted rounded-lg animate-pulse" />
         ))}
       </div>
     );
@@ -21,7 +21,7 @@ export function WorkoutList({ workouts, isLoading }: Props) {
 
   if (workouts.length === 0) {
     return (
-      <p className="text-gray-400 text-center py-8">
+      <p className="text-muted-foreground text-center py-8">
         No workouts logged yet. Start today!
       </p>
     );
@@ -32,18 +32,18 @@ export function WorkoutList({ workouts, isLoading }: Props) {
       {workouts.map((w) => (
         <div
           key={w.id}
-          className="flex items-center justify-between bg-white border rounded-lg px-4 py-3"
+          className="flex items-center justify-between bg-card text-card-foreground border rounded-lg px-4 py-3 hover:border-primary/50 transition-colors"
         >
           <div className="flex items-center gap-3">
             <span className="text-lg">{activityEmoji(w.activityType)}</span>
             <div>
               <p className="font-medium text-sm">{w.activityType}</p>
-              <p className="text-xs text-gray-400">
+              <p className="text-xs text-muted-foreground mt-0.5">
                 {format(new Date(w.date), "MMM d, yyyy")}
               </p>
             </div>
           </div>
-          <span className="text-sm font-medium text-gray-600">
+          <span className="text-sm font-medium text-primary">
             {w.durationMins} min
           </span>
         </div>

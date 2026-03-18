@@ -41,12 +41,12 @@ export function StatsDashboard({ refreshTrigger }: Props) {
   return (
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
       {STAT_CARDS(stats).map((card) => (
-        <div key={card.label} className="bg-white border rounded-xl p-4">
-          <p className="text-xs text-gray-500 uppercase tracking-wide">
+        <div key={card.label} className="bg-card text-card-foreground border shadow-sm rounded-xl p-4 hover:shadow-md transition-shadow">
+          <p className="text-xs text-muted-foreground uppercase tracking-wider font-medium">
             {card.label}
           </p>
-          <p className="text-2xl font-bold mt-1">{card.value}</p>
-          <p className="text-xs text-gray-400">{card.sub}</p>
+          <p className="text-2xl font-bold mt-1 text-foreground">{card.value}</p>
+          <p className="text-xs text-muted-foreground mt-1">{card.sub}</p>
         </div>
       ))}
     </div>
