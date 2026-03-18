@@ -13,22 +13,23 @@ datasource db {
 }
 
 model Workout {
-  id           String   @id @default(uuid())
-  userId       String
+  id           String   @id @default(cuid())
+  userId       String   
   activityType String
-  duration     Int
-  date         DateTime @default(now())
+  durationMins Int
+  date         DateTime
   createdAt    DateTime @default(now())
 
   @@index([userId])
+  @@index([userId, date])
 }
 
 model ChatMessage {
-  id        String   @id @default(uuid())
+  id        String   @id @default(cuid())
   userId    String
-  role      String
+  role      String   // "user" | "assistant"
   content   String
   createdAt DateTime @default(now())
 
-  @@index([userId])
+  @@index([userId, createdAt])
 }
