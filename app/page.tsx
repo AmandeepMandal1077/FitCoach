@@ -1,12 +1,8 @@
 import Link from "next/link";
 import { AuthButton } from "@/components/auth-button";
 import { Suspense } from "react";
-import { createClient } from "@/lib/supabase/server";
 
-export default async function Home() {
-  const supabase = await createClient();
-  const { data } = await supabase.auth.getClaims();
-  const user = data?.claims;
+export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen bg-background text-foreground selection:bg-primary/20">
@@ -33,7 +29,7 @@ export default async function Home() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
             <Link
-              href={user ? "/dashboard" : "/auth/login"}
+              href="/dashboard"
               className="inline-flex h-12 items-center justify-center rounded-lg bg-primary px-8 py-2 text-sm font-bold text-primary-foreground shadow-sm hover:bg-primary/90 transition-colors w-full sm:w-auto"
             >
               Get Started Now

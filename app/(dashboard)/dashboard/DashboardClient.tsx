@@ -21,7 +21,7 @@ export function DashboardClient() {
     const supabase = createClient();
     supabase.auth.getUser().then(({ data: { user } }) => {
       if (!user) {
-        router.replace("/login");
+        router.replace("/auth/login");
       } else {
         setAuthChecked(true);
       }
