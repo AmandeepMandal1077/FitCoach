@@ -66,7 +66,7 @@ export function WorkoutForm({ onWorkoutAdded, addWorkout }: Props) {
               activityType: e.target.value as ActivityType,
             }))
           }
-          className="w-full border rounded-lg px-3 py-2"
+          className="w-full border border-input bg-background rounded-lg px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
         >
           {ACTIVITIES.map((a) => (
             <option key={a} value={a}>
@@ -88,7 +88,7 @@ export function WorkoutForm({ onWorkoutAdded, addWorkout }: Props) {
           onChange={(e) =>
             setForm((f) => ({ ...f, durationMins: Number(e.target.value) }))
           }
-          className="w-full border rounded-lg px-3 py-2"
+          className="w-full border border-input bg-background rounded-lg px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
           required
         />
       </div>
@@ -100,18 +100,18 @@ export function WorkoutForm({ onWorkoutAdded, addWorkout }: Props) {
           value={form.date}
           max={today}
           onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))}
-          className="w-full border rounded-lg px-3 py-2"
+          className="w-full border border-input bg-background rounded-lg px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
           required
         />
       </div>
 
-      {error && <p className="text-red-500 text-sm">{error}</p>}
-      {success && <p className="text-green-600 text-sm">✓ Workout logged!</p>}
+      {error && <p className="text-destructive text-sm font-medium">{error}</p>}
+      {success && <p className="text-green-600 text-sm font-medium">✓ Workout logged!</p>}
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className="w-full bg-black text-white py-2 rounded-lg font-medium disabled:opacity-50"
+        className="w-full bg-primary text-primary-foreground shadow-sm py-2 rounded-lg font-medium hover:bg-primary/90 transition-all disabled:opacity-50"
       >
         {isSubmitting ? "Logging..." : "Log Workout"}
       </button>

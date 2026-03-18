@@ -37,7 +37,7 @@ export function MotivationCard() {
   };
 
   return (
-    <div className="bg-white border rounded-xl p-6 space-y-4">
+    <div className="bg-card text-card-foreground border shadow-sm rounded-xl p-6 space-y-4">
       <h2 className="font-semibold text-lg">AI Motivation</h2>
 
       <div className="flex gap-2">
@@ -45,10 +45,10 @@ export function MotivationCard() {
           <button
             key={t.value}
             onClick={() => setTone(t.value)}
-            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-colors ${
+            className={`flex-1 py-2 px-3 rounded-lg text-sm font-medium border transition-all ${
               tone === t.value
-                ? "bg-black text-white border-black"
-                : "border-gray-200 hover:border-gray-400"
+                ? "bg-primary text-primary-foreground border-primary shadow-sm"
+                : "border-border text-foreground hover:border-primary/50 bg-background"
             }`}
           >
             {t.emoji} {t.label}
@@ -59,15 +59,15 @@ export function MotivationCard() {
       <button
         onClick={fetchMotivation}
         disabled={isLoading}
-        className="w-full py-2 bg-black text-white rounded-lg font-medium disabled:opacity-50"
+        className="w-full py-2 bg-primary text-primary-foreground rounded-lg font-medium transition-all hover:bg-primary/90 disabled:opacity-50 shadow-sm"
       >
         {isLoading ? "Getting your message..." : "Get AI Motivation"}
       </button>
 
-      {error && <p className="text-red-500 text-sm">{error}</p>}
+      {error && <p className="text-destructive text-sm font-medium">{error}</p>}
 
       {motivation && (
-        <div className="bg-gray-50 rounded-lg p-4 text-sm leading-relaxed border-l-4 border-black">
+        <div className="bg-secondary text-secondary-foreground rounded-lg p-4 text-sm leading-relaxed border-l-4 border-primary mt-4">
           {motivation}
         </div>
       )}
