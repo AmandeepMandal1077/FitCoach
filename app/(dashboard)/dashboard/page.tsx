@@ -11,7 +11,7 @@ export default function DashboardPage() {
           FitCoach <span className="text-primary ml-1">AI</span>
         </Link>
         <nav className="flex items-center gap-4 sm:gap-6">
-          <div className="hidden sm:block">
+          <div>
             <Suspense>
               <AuthButton />
             </Suspense>

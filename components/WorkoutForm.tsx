@@ -28,7 +28,7 @@ export function WorkoutForm({ onWorkoutAdded, addWorkout }: Props) {
 
   const [form, setForm] = useState({
     activityType: "Running" as ActivityType,
-    durationMins: 30,
+    durationMins: "30",
     date: today,
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -42,9 +42,13 @@ export function WorkoutForm({ onWorkoutAdded, addWorkout }: Props) {
     setSuccess(false);
 
     try {
-      await addWorkout(form);
+      await addWorkout({
+        activityType: form.activityType,
+        date: form.date,
+        durationMins: parseInt(form.durationMins || "0", 10),
+      });
       setSuccess(true);
-      setForm({ activityType: "Running", durationMins: 30, date: today });
+      setForm({ activityType: "Running", durationMins: "30", date: today });
       onWorkoutAdded();
       setTimeout(() => setSuccess(false), 3000);
     } catch (err) {
@@ -86,7 +90,7 @@ export function WorkoutForm({ onWorkoutAdded, addWorkout }: Props) {
           max={480}
           value={form.durationMins}
           onChange={(e) =>
-            setForm((f) => ({ ...f, durationMins: Number(e.target.value) }))
+            setForm((f) => ({ ...f, durationMins: e.target.value }))
           }
           className="w-full border border-input bg-background rounded-lg px-3 py-2 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all"
           required
