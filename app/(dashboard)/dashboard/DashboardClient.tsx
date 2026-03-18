@@ -30,7 +30,7 @@ export function DashboardClient() {
 
   if (!authChecked) {
     return (
-      <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
+      <div className="w-full px-4 sm:px-8 py-8 space-y-8 max-w-none">
         <div className="h-8 w-48 bg-gray-200 rounded animate-pulse" />
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           {[...Array(4)].map((_, i) => (
@@ -49,29 +49,40 @@ export function DashboardClient() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8 space-y-8">
-      <h1 className="text-3xl font-bold">FitCoach AI 🏅</h1>
-
+    <div className="w-full px-4 sm:px-8 py-8 space-y-8 max-w-none flex flex-col flex-1">
       <StatsDashboard refreshTrigger={statsRefreshTrigger} />
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-        <div className="space-y-6">
-          <div className="bg-white border rounded-xl p-6">
+        {/* Column 1: Workout Form & AI Motivation */}
+        <div className="flex flex-col gap-6">
+          <div className="bg-card text-card-foreground border shadow-sm rounded-xl p-6 shrink-0">
             <h2 className="font-semibold text-lg mb-4">Log a Workout</h2>
             <WorkoutForm
               addWorkout={addWorkout}
               onWorkoutAdded={handleWorkoutAdded}
             />
           </div>
-          <MotivationCard />
+          <div className="shrink-0">
+            <MotivationCard />
+          </div>
         </div>
 
-        <div className="bg-white border rounded-xl p-6">
-          <h2 className="font-semibold text-lg mb-4">Activity History</h2>
-          <WorkoutList workouts={workouts} isLoading={isLoading} />
+        {/* Column 2: Activity History */}
+        <div className="relative w-full h-[500px] lg:h-full">
+          <div className="h-full w-full lg:absolute lg:inset-0 bg-card text-card-foreground border shadow-sm rounded-xl p-6 flex flex-col overflow-hidden">
+            <h2 className="font-semibold text-lg mb-4 shrink-0">Activity History</h2>
+            <div className="overflow-y-auto flex-1 pr-2 space-y-2">
+              <WorkoutList workouts={workouts} isLoading={isLoading} />
+            </div>
+          </div>
         </div>
 
-        <ChatWidget />
+        {/* Column 3: AI Chat */}
+        <div className="relative w-full h-[500px] lg:h-full">
+          <div className="h-full w-full lg:absolute lg:inset-0 flex flex-col overflow-hidden rounded-xl border shadow-sm">
+            <ChatWidget />
+          </div>
+        </div>
       </div>
     </div>
   );
