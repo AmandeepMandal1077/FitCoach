@@ -48,8 +48,8 @@ export function SignUpForm({
         },
       });
       if (error) throw error;
-      // Navigate to authenticated route after successful signup
-      router.push("/dashboard");
+      // Force a hard navigation after successful signup
+      window.location.href = "/dashboard";
     } catch (error: unknown) {
       setError(error instanceof Error ? error.message : "An error occurred");
     } finally {
